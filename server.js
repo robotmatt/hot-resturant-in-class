@@ -34,13 +34,19 @@ app.use(express.static('public'));
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname + "/html/", "home.html"));
 });
-
 app.get("/home", function (req, res) {
     res.sendFile(path.join(__dirname + "/html/", "home.html"));
 });
-
 app.get("/index", function (req, res) {
     res.sendFile(path.join(__dirname + "/html/", "home.html"));
+});
+
+// Page Routes
+app.get("/reserve", function (req, res) {
+    res.sendFile(path.join(__dirname + "/html/", "reserve.html"));
+});
+app.get("/tables", function (req, res) {
+    res.sendFile(path.join(__dirname + "/html/", "tables.html"));
 });
 
 // API Routes
