@@ -57,7 +57,7 @@ app.get("/tables", function (req, res) {
 
 // API Routes
 app.get("/api/tables", function (req, res) {
-    res.json(tables);
+    res.json(reservations);
 });
 app.get("/api/waitlist", function (req, res) {
     res.json(waitlist);
