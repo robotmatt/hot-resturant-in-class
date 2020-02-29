@@ -6,12 +6,18 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-let tables = [
+let reservations = [
     {
         name: "Bob",
         phoneNumber: "444-333-2222",
         email: "no@spam.com",
         id: "1"
+    },
+    {
+        name: "Sally",
+        phoneNumber: "444-333-2222",
+        email: "lotsof@spam.com",
+        id: "2"
     }
 ];
 let waitlist = [
@@ -63,6 +69,18 @@ app.post("/api/reserve", function (req, res) {
     console.log(newReservation);
     reservation.push(newReservation);
     res.json(newReservation);
+});
+// Create New Reservations - takes in JSON input
+app.post("/api/reserve", function (req, res) {
+    var newReservation = req.body;
+    console.log(newReservation);
+    if(reservations.length < 5){
+        reservations.push(newReservation);
+        res.json(newReservation);
+    } else{
+        waitlist.push(newReservation);
+        res.json(newReservation);
+    }
 });
 
 
