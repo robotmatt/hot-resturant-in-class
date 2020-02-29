@@ -76,10 +76,6 @@
             </div>
     </main>
 
-    <script type="text/javascript">
-        // Code for pulling the reservations
-    </script>
-
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -89,6 +85,54 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
+
+    <script type="text/javascript">
+        // Code for pulling the reservations
+        $(document).ready(function () {
+            $.get("/api/tables", function (data) {
+                console.log(JSON.stringify(data));
+                data.forEach(function(element, i) {
+                    // Get a reference to the tableList element and populate it with tables
+                    var tableList = $("#tableList");
+
+                    // Then display the fields in the HTML (Section Name, Date, URL)
+                    var listItem = $("<li class='list-group-item mt-4'>");
+
+                    listItem.append(
+                        $("<h2>").text("Table #" + (i + 1)),
+                        $("<hr>"),
+                        $("<h4>").text("ID: " + element.id),
+                        $("<h4>").text("Name: " + element.name),
+                        $("<h4>").text("Email: " + element.email),
+                        $("<h4>").text("Phone: " + element.phoneNumber)
+                    );
+
+                    tableList.append(listItem);
+                });
+            });
+            $.get("/api/waitlist", function (data) {
+                console.log(JSON.stringify(data));
+                data.forEach(function(element, i) {
+                    // Get a reference to the waitList element and populate it with tables
+                    var waitList = $("#waitList");
+
+                    // Then display the fields in the HTML (Section Name, Date, URL)
+                    var listItem = $("<li class='list-group-item mt-4'>");
+
+                    listItem.append(
+                        $("<h2>").text("Table #" + (i + 1)),
+                        $("<hr>"),
+                        $("<h4>").text("ID: " + element.id),
+                        $("<h4>").text("Name: " + element.name),
+                        $("<h4>").text("Email: " + element.email),
+                        $("<h4>").text("Phone: " + element.phoneNumber)
+                    );
+
+                    waitList.append(listItem);
+                });
+            });
+        });
     </script>
 </body>
 
