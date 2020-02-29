@@ -51,10 +51,18 @@ app.get("/tables", function (req, res) {
 
 // API Routes
 app.get("/api/tables", function (req, res) {
-    res.json(tables);
+    return res.json(tables);
 });
 app.get("/api/waitlist", function (req, res) {
-    res.json(waitlist);
+    return res.json(waitlist);
+});
+
+// Create New Reservations - takes in JSON input
+app.post("/api/reserve", function (req, res) {
+    var newReservation = req.body;
+    console.log(newReservation);
+    reservation.push(newReservation);
+    res.json(newReservation);
 });
 
 
